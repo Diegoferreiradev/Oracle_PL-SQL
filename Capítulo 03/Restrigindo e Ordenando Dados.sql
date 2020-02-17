@@ -1,0 +1,112 @@
+SELECT * FROM TALUNO;
+
+
+ALTER TABLE TALUNO ADD ESTADO CHAR(2) DEFAULT 'PE';
+
+ALTER TABLE TALUNO ADD SALARIO NUMBER(8,2) DEFAULT 998.00;
+
+UPDATE TALUNO SET ESTADO = 'AC', SALARIO = 250 WHERE cod_aluno = 1;
+
+UPDATE TALUNO SET ESTADO = 'MT', SALARIO = 800 WHERE cod_aluno = 2;
+
+UPDATE TALUNO SET ESTADO = 'PE', SALARIO = '1000' WHERE cod_aluno = 5;
+
+
+COMMIT;
+
+
+SELECT * FROM TALUNO WHERE ESTADO <> 'PE' AND SALARIO <= 1.200 ORDER BY SALARIO DESC;
+
+INSERT INTO TALUNO (COD_ALUNO,NOME,CIDADE) VALUES (SEQ_ALUNO.nextval, 'Mirian', 'Dois Irmãos');
+
+INSERT INTO TALUNO (COD_ALUNO,NOME,CIDADE) VALUES (SEQ_ALUNO.nextval, 'Renata', 'Paulista');
+
+UPDATE TALUNO SET SALARIO = 1500 WHERE COD_ALUNO = 2;
+
+SELECT a.estado, a.salario, a.nome FROM TALUNO a ORDER BY a.estado, a.salario DESC;
+
+ALTER TABLE TALUNO ADD NASCIMENTO DATE DEFAULT SYSDATE - 1000;
+
+SELECT SYSDATE - SYSDATE - 100 FROM DUAL;
+
+SELECT SYSDATE FROM DUAL;
+
+
+SELECT * FROM TALUNO;
+
+UPDATE TALUNO SET NASCIMENTO = TO_DATE('10/10/2001', 'DD/MM/YYYY') WHERE COD_ALUNO = 6;
+
+UPDATE TALUNO SET NASCIMENTO = TO_DATE('10/08/2002', 'DD/MM/YYYY') WHERE COD_ALUNO = 2;
+
+SELECT cod_aluno, nascimento, Trunc(nascimento) AS NASCIMENTO, nome FROM TALUNO WHERE Trunc(nascimento) = TO_DATE('10/08/2002', 'DD/MM/YYYY');
+
+
+SELECT cod_aluno, 
+       nascimento, 
+       Trunc(nascimento), 
+       nome 
+FROM TALUNO 
+WHERE nascimento 
+BETWEEN TO_DATE('13/03/2017 15:00', 'DD/MM/YYYY HH24:MI') AND 
+TO_DATE('10/08/2002 21:00', 'DD/MM/YYYY HH24:MI');
+
+
+SELECT * FROM TCONTRATO;
+
+SELECT t.cod_contrato, 
+       t.data, 
+       t.total, 
+       t.desconto, 
+       t.desconto + 1000 AS Calculo 
+FROM tcontrato t 
+WHERE t.total <= t.desconto + 1000;
+
+
+UPDATE tcontrato SET desconto = NULL WHERE cod_contrato = 2;
+
+SELECT * FROM tcontrato WHERE desconto IS NULL;
+
+SELECT * FROM tcontrato WHERE desconto IS NOT NULL; 
+
+SELECT * FROM tcontrato WHERE desconto BETWEEN 0 AND 10;
+
+SELECT cod_contrato, 
+       total,
+       desconto,
+       NVL(desconto,0) 
+FROM tcontrato 
+WHERE NVL(desconto,0) BETWEEN 0 AND 10;
+
+
+SELECT * FROM tcontrato WHERE desconto >= 0 AND desconto <= 10 OR desconto = NULL;
+
+SELECT * FROM titem WHERE cod_curso IN (1, 2, 3);
+
+SELECT * FROM titem WHERE cod_curso NOT IN (1, 2, 3);
+
+SELECT * FROM tcurso;
+
+INSERT INTO tcurso VALUES (9,'WINDOWS', 1000, 50);
+
+SELECT * FROM tcurso WHERE cod_curso IN(SELECT COD_CURSO FROM TITEM);
+
+SELECT * FROM TCURSO WHERE cod_curso NOT IN (SELECT COD_CURSO FROM TITEM);
+
+SELECT * FROM titem WHERE cod_item = 1 OR cod_item = 5 OR cod_item = 7;
+
+SELECT * FROM TCURSO WHERE NOME LIKE 'S%';
+
+SELECT * FROM TCURSO WHERE NOME NOT LIKE 'S%';
+
+ALTER TABLE TCURSO ADD PRE_REQ INTEGER;
+
+UPDATE TCURSO SET pre_req = 6 WHERE cod_curso = 4;
+
+SELECT * FROM TCURSO WHERE pre_req IS NULL;
+
+SELECT * FROM TCURSO WHERE pre_req IS NOT NULL;
+
+COMMIT;
+
+
+   

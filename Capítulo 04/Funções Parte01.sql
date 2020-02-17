@@ -1,0 +1,63 @@
+
+SELECT * FROM TALUNO;
+
+SELECT NOME FROM taluno;
+
+SELECT CONCAT(cod_aluno, nome) FROM TALUNO;
+
+SELECT cod_aluno ||' - '||nome FROM TALUNO;
+
+SELECT INITCAP(nome) FROM TALUNO;
+
+SELECT nome, INSTR(nome, 'a') FROM TALUNO;
+
+SELECT nome, LENGTH(nome) FROM TALUNO;
+
+SELECT LOWER(nome) FROM TALUNO;
+
+SELECT nome, UPPER(nome) FROM TALUNO;
+
+SELECT INITCAP('DIEGO FERREIRA DE PAULA') FROM TALUNO;
+ 
+SELECT RPAD(salario,8,'0') FROM TALUNO;
+
+SELECT RPAD('NOME',10,'$' ) FROM TALUNO;
+
+SELECT SUBSTR(nome,1,3) FROM TALUNO;
+
+SELECT SUBSTR(nome,1,1) FROM TALUNO;
+
+SELECT SUBSTR(nome,3,1) FROM TALUNO;
+
+SELECT REPLACE(nome,'R','$') FROM TALUNO;
+
+SELECT nome, SUBSTR(LENGTH(nome),1) FROM TALUNO;
+
+SELECT INITCAP('ANA MARIA') FROM DUAL;
+
+SELECT cod_aluno, LPAD(cod_aluno,5,'0') FROM TALUNO;
+
+SELECT nome, salario, RPAD(salario,8,'0') FROM TALUNO;
+
+SELECT nome, RPAD(nome,10,'$') FROM TALUNO;
+
+SELECT nome, SUBSTR(nome,1,3) FROM TALUNO;
+
+SELECT * FROM taluno WHERE LOWER(nome) = 'renata';
+
+SELECT * FROM taluno WHERE UPPER(CIDADE) = 'PAULISTA';
+
+SELECT * FROM TALUNO WHERE UPPER(SUBSTR(CIDADE,1,3)) = 'REC';
+
+UPDATE TALUNO SET salario = 999.99 WHERE cod_aluno = 24;
+
+SELECT salario, REPLACE(salario,',',''),
+                REPLACE(salario, 10,'0'),
+                REPLACE(salario, 10,'0'),
+                LPAD(REPLACE(salario,',',''),10,'0')
+FROM TALUNO;
+
+
+
+  
+
